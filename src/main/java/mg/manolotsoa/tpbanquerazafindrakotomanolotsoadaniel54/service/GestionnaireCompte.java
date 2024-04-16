@@ -69,4 +69,16 @@ public class GestionnaireCompte {
         update(destinataire);
     }
 
+    @Transactional
+    public void deposer(CompteBancaire c, int montant) {
+        c.deposer(montant);
+        update(c);
+    }
+
+    @Transactional
+    public void retirer(CompteBancaire c, int montant) {
+        c.retirer(montant);
+        update(c);
+    }
+
 }

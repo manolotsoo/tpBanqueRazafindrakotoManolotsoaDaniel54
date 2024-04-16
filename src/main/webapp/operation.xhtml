@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./WEB-INF/template/template_defaut.xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core"
+                >
+    <ui:define name="metadata">
+        <f:metadata>  
+            <f:viewParam name="id" value="#{operation.id}"  
+                         required="true"/>  
+            <f:viewAction action="#{operation.loadCompte}"/>  
+        </f:metadata>
+    </ui:define>
+    <ui:define name="top">
+        Operation sur un compte
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form>
+            <h1><h:outputText value="Operation bancaire"/></h1>
+            <h:panelGrid columns="3">
+                Nom du titulaire :
+                <h:outputText value="#{operation.compteBancaire.nom}"/>
+                <h:panelGroup/>
+                Type d'operation:
+                <h:selectOneRadio id="type"
+                                  value="#{operation.type}"
+                                  required="true"
+                                  layout="pageDirection"
+                                  requiredMessage="Ce champ est requis"
+                                  >
+                    <f:selectItem itemValue="depot" itemLabel="Depôt"/>
+                    <f:selectItem itemValue="retrait" itemLabel="Retrait"/>
+                </h:selectOneRadio>
+                <h:message for="type"/>
+
+                Montant de l'operation :
+                <h:inputText id="montant" value="#{operation.montant}"
+                             required="true"
+                             />
+                <h:message for="montant"/>
+            </h:panelGrid>
+            <h:commandButton action="#{operation.enregistrer}"
+                             value="Enregistrer l'opération"/>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
