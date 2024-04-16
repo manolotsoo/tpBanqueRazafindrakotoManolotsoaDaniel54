@@ -56,6 +56,10 @@ public class CompteBancaire implements Serializable {
         }
     }
 
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
     public String getNom() {
         return nom;
     }

@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./WEB-INF/template/template_defaut.xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core"
+                >
+    <ui:define name="metadata">
+        <f:metadata>  
+            <f:viewParam name="id" value="#{modifier.id}"  
+                         required="true"/>  
+            <f:viewAction action="#{modifier.loadCompte}"/>  
+        </f:metadata>
+    </ui:define>
+    <ui:define name="top">
+        Modification du nom
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form>
+            <h1><h:outputText value="Modification du nom d'un possesseur d'un compte"/></h1>
+            <h:panelGrid columns="2">
+
+                <h:outputLabel value="Nom : " for="nom" />
+                <h:inputText id="nom" value="#{modifier.compteBancaire.nom}" title="nom" required="true"/>
+
+                <h:outputLabel value="Solde : " for="solde" />
+                <h:inputText id="solde" readonly="true" value="#{modifier.compteBancaire.solde}" title="solde" required="true"/>
+
+                <h:commandButton id="update" value="Enregistrer" action="#{modifier.update}"/>
+            </h:panelGrid>
+
+            <h:messages/>
+
+        </h:form>
+    </ui:define>
+
+</ui:composition>
