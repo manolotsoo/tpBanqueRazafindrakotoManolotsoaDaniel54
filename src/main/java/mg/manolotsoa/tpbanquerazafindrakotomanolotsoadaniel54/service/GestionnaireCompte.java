@@ -42,6 +42,10 @@ public class GestionnaireCompte {
         return query.getResultList();
     }
 
+    public CompteBancaire findById(Long idCompteBancaire) {
+        return em.find(CompteBancaire.class, idCompteBancaire);
+    }
+
     @Transactional
     public CompteBancaire update(CompteBancaire compteBancaire) {
         return em.merge(compteBancaire);
@@ -52,13 +56,19 @@ public class GestionnaireCompte {
         em.persist(c);
     }
 
-    public CompteBancaire findById(int idCompteBancaire) {
-        return em.find(CompteBancaire.class, idCompteBancaire);
-    }
-
     public long nbComptes() {
         TypedQuery<Long> query = em.createQuery("SELECT COUNT(c) FROM CompteBancaire c", Long.class);
         return query.getSingleResult();
+    }
+
+    @Transactional
+    public void transfertArgent(Long source, Long destinataire, int montant) {
+        CompteBancaire compteSource = findById(source);
+        CompteBancaire compteDestinataire = findById(destinataire);
+        compteDestinataire.deposer(montant);
+        compteSource.retirer(montant);
+        update(compteSource);
+        update(compteDestinataire);
     }
 
 }

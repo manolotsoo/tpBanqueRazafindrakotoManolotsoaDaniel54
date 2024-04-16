@@ -9,8 +9,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.NamedQueries;
-import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
@@ -78,9 +76,6 @@ public class CompteBancaire implements Serializable {
         return id;
     }
 
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
     @Override
     public int hashCode() {
         int hash = 0;
@@ -105,5 +100,4 @@ public class CompteBancaire implements Serializable {
     public String toString() {
         return "mg.manolotsoa.tpbanquerazafindrakotomanolotsoadaniel54.entities.CompteBancaire[ id=" + id + " ]";
     }
-
 }

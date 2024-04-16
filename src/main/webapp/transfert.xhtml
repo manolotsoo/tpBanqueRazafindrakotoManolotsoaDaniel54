@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <body>
+
+        <ui:composition template="./WEB-INF/template/template_defaut.xhtml">
+
+            <ui:define name="top">
+                Transfert d'argent d'un compte à l'autre
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                    <h1><h:outputText value="Transfert d'argent"/></h1>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Compte source:" for="compteSource" />
+                        <h:inputText id="compteSource" value="#{transfert.compteSource}" title="compteSource" required="true" requiredMessage="Compte source est requis."/>
+                        <h:outputLabel value="Compte destinataire:" for="compteDestinataire" />
+                        <h:inputText id="compteDestinataire" value="#{transfert.compteDestinataire}" title="compteDestinataire" required="true" requiredMessage="Compte destinataire est requis."/>
+                        <h:outputLabel value="Montant:" for="montant" />
+                        <h:inputText id="montant" value="#{transfert.montant}" title="Montant" />
+                        <h:commandButton id="enregistrer" value="Enregistrer" action="#{transfert.faireTransfert}"/>
+                    </h:panelGrid>
+                    <h:messages/>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

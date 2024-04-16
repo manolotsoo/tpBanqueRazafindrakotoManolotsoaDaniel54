@@ -4,7 +4,7 @@
  */
 package mg.manolotsoa.tpbanquerazafindrakotomanolotsoadaniel54.jsf;
 
-import jakarta.annotation.PostConstruct;
+//import jakarta.annotation.PostConstruct;
 import jakarta.inject.Named;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
