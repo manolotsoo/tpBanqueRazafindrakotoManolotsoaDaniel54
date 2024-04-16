@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core"
+                template="./WEB-INF/template/template_defaut.xhtml">
+
+    <ui:define name="top">
+        Ajout d'un compte
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form id="form">
+            <h:panelGrid columns="3">
+                <h:outputLabel value="Nom:" for="nom" />
+                <h:inputText id="nom" value="#{ajoutCompte.nom}"
+                             required="true"/>
+                <h:message for="nom"/>
+                <h:outputLabel value="Solde:" for="solde" />
+                <h:inputText id="solde" value="#{ajoutCompte.solde}"
+                             required="true"
+                             converterMessage="solde est un nombre entier"/>
+                <h:message for="solde"/>
+            </h:panelGrid>
+            <h:commandButton id="valider" value="Valider" action="#{ajoutCompte.faire()}"/>
+        </h:form>
+        <h:messages/>
+    </ui:define>
+
+</ui:composition>
