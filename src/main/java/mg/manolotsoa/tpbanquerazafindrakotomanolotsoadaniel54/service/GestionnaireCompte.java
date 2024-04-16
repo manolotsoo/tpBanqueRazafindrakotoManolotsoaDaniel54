@@ -10,6 +10,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
+import java.util.List;
 import mg.manolotsoa.tpbanquerazafindrakotomanolotsoadaniel54.entity.CompteBancaire;
 
 /**
@@ -36,10 +37,11 @@ public class GestionnaireCompte {
     @PersistenceContext(unitName = "banquePU")
     private EntityManager em;
 
-//    public List<CompteBancaire> getAllComptes() {
-//        Query query = em.createNamedQuery("CompteBancaire.findAll");
-//        return query.getResultList();
-//    }
+    public List<CompteBancaire> getAllComptes() {
+        TypedQuery<CompteBancaire> query = em.createQuery("SELECT c FROM CompteBancaire c", CompteBancaire.class);
+        return query.getResultList();
+    }
+
     @Transactional
     public CompteBancaire update(CompteBancaire compteBancaire) {
         return em.merge(compteBancaire);
