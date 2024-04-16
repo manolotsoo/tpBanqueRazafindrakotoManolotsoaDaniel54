@@ -62,13 +62,11 @@ public class GestionnaireCompte {
     }
 
     @Transactional
-    public void transfertArgent(Long source, Long destinataire, int montant) {
-        CompteBancaire compteSource = findById(source);
-        CompteBancaire compteDestinataire = findById(destinataire);
-        compteDestinataire.deposer(montant);
-        compteSource.retirer(montant);
-        update(compteSource);
-        update(compteDestinataire);
+    public void transfertArgent(CompteBancaire source, CompteBancaire destinataire, int montant) {
+        destinataire.deposer(montant);
+        source.retirer(montant);
+        update(source);
+        update(destinataire);
     }
 
 }

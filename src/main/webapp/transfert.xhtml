@@ -14,18 +14,22 @@
             </ui:define>
 
             <ui:define name="content">
-                <h:form>
+                <h:form id="form">
                     <h1><h:outputText value="Transfert d'argent"/></h1>
-                    <h:panelGrid columns="2">
+                    <h:panelGrid columns="3">
                         <h:outputLabel value="Compte source:" for="compteSource" />
-                        <h:inputText id="compteSource" value="#{transfert.compteSource}" title="compteSource" required="true" requiredMessage="Compte source est requis."/>
+                        <h:inputText id="source" value="#{transfert.compteSource}" title="compteSource" required="true" requiredMessage="Compte source est requis."/>
+                        <h:message for="source"/>
+
                         <h:outputLabel value="Compte destinataire:" for="compteDestinataire" />
-                        <h:inputText id="compteDestinataire" value="#{transfert.compteDestinataire}" title="compteDestinataire" required="true" requiredMessage="Compte destinataire est requis."/>
+                        <h:inputText id="destinataire" value="#{transfert.compteDestinataire}" title="compteDestinataire" required="true" requiredMessage="Compte destinataire est requis."/>
+                        <h:message for="destinataire"/>
+
                         <h:outputLabel value="Montant:" for="montant" />
                         <h:inputText id="montant" value="#{transfert.montant}" title="Montant" />
-                        <h:commandButton id="enregistrer" value="Enregistrer" action="#{transfert.faireTransfert}"/>
+                        <h:message for="montant"/>
                     </h:panelGrid>
-                    <h:messages/>
+                    <h:commandButton id="enregistrer" value="Enregistrer" action="#{transfert.faireTransfert}"/>
                 </h:form>
             </ui:define>
 
