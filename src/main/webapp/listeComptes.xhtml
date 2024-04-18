@@ -12,29 +12,22 @@
     <ui:define name="content">
         <h:form>
             <p:dataTable value="#{listeComptes.allComptes}"
-                         widgetVar="compteBancaireTable"
+                         widgetVar="listeComptesTable"
                          emptyMessage="Aucun compte bancaire avec ce critère"
                          var="item"
-                         paginator="true" rows="10"
+                         paginator="true" 
+                         rows="10"
                          rowsPerPageTemplate="2,4,8,10"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          >
-                <f:facet name="header">
-                    <p:outputPanel>
-                        <h:outputText value="Recherche dans tous les champs de recherche"/>
-                        <p:inputText id="globalFilter" onkeyup="PF('customerTable').filter()"
-                                     style="width:150px"/>
-                    </p:outputPanel>
-                </f:facet>
-
-                <p:column>
+                <p:column sortBy="#{item.id}">
                     <f:facet name="header">
                         <h:outputText value="Id"/>
                     </f:facet>
                     <h:link outcome="operation?id=#{item.id}" 
                             value="#{item.id}"/>
                 </p:column>
-                <p:column>
+                <p:column sortBy="#{item.nom}">
                     <f:facet name="header">
                         <h:outputText value="Nom"/>
                     </f:facet>
@@ -42,7 +35,7 @@
 
                 </p:column>
 
-                <p:column>
+                <p:column sortBy="#{item.solde}">
                     <f:facet name="header">
                         <h:outputText value="Solde"/>
                     </f:facet>

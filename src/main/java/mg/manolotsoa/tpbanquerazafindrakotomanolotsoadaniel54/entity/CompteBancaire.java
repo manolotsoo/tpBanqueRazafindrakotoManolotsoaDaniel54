@@ -4,14 +4,19 @@
  */
 package mg.manolotsoa.tpbanquerazafindrakotomanolotsoadaniel54.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -36,16 +41,25 @@ public class CompteBancaire implements Serializable {
     @Column(name = "SOLDE")
     int solde;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<OperationBancaire> operations = new ArrayList<>();
+
     public CompteBancaire() {
+    }
+
+    public List<OperationBancaire> getOperations() {
+        return operations;
     }
 
     public CompteBancaire(String nom, int solde) {
         this.nom = nom;
         this.solde = solde;
+        this.operations.add(new OperationBancaire("Création du compte", solde));
     }
 
     public void deposer(int montant) {
         solde += montant;
+        this.operations.add(new OperationBancaire("Débit", solde));
     }
 
     public void retirer(int montant) {
@@ -54,6 +68,7 @@ public class CompteBancaire implements Serializable {
         } else {
             solde = 0;
         }
+        this.operations.add(new OperationBancaire("Crédit", solde));
     }
 
     public void setNom(String nom) {
