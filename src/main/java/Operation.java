@@ -6,6 +6,7 @@
 import jakarta.inject.Named;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
+import jakarta.persistence.OptimisticLockException;
 import java.io.Serializable;
 import mg.manolotsoa.tpbanquerazafindrakotomanolotsoadaniel54.entity.CompteBancaire;
 import mg.manolotsoa.tpbanquerazafindrakotomanolotsoadaniel54.jsf.Util;
@@ -70,13 +71,18 @@ public class Operation implements Serializable {
     }
 
     public String enregistrer() {
-        System.out.print("TYPE IS " + type);
-        if (type.equals("depot")) {
-            gestionnaireCompte.deposer(compteBancaire, montant);
-        } else {
-            gestionnaireCompte.retirer(compteBancaire, montant);
+        try {
+            if (type.equals("depot")) {
+                gestionnaireCompte.deposer(compteBancaire, montant);
+            } else {
+                gestionnaireCompte.retirer(compteBancaire, montant);
+            }
+            Util.addFlashInfoMessage("Operation enregistré sur le compte de " + compteBancaire.getNom());
+            return "listeComptes?faces-redirect=true";
+        } catch (OptimisticLockException ex) {
+            Util.messageErreur("Le compte de " + compteBancaire.getNom()
+                    + " a été modifié ou supprimé par un autre utilisateur !");
+            return null;
         }
-        Util.addFlashInfoMessage("Operation enregistré sur le compte de " + compteBancaire.getNom());
-        return "listeComptes?faces-redirect=true";
     }
 }

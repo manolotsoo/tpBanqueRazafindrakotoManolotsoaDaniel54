@@ -71,9 +71,7 @@ public class Transfert implements Serializable {
             // dans la page JSF qui lance le transfert.
             erreur = true;
         } else if (compteSource != null) {
-            if (compteSource.getSolde() < montant) { // à compléter pour le cas où le solde du compte source est insuffisant...
-                System.out.print("compteSource NULL");
-
+            if (compteSource.getSolde() < montant) { // pour le cas où le solde du compte source est insuffisant...
                 Util.messageErreur("le solde du compte source est insuffisant!", "le solde du compte source est insuffisant!", "form:montant");
                 erreur = true;
             }
