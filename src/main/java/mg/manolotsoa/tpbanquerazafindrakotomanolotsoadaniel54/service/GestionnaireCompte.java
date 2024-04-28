@@ -20,7 +20,7 @@ import mg.manolotsoa.tpbanquerazafindrakotomanolotsoadaniel54.entity.CompteBanca
 @DataSourceDefinition(
         className = "com.mysql.cj.jdbc.MysqlDataSource",
         name = "java:app/jdbc/banque",
-        serverName = "172.23.0.2",
+        serverName = "172.20.0.2",
         portNumber = 3306,
         user = "root", // nom et
         password = "root", // mot de passe que vous avez donnés lors de la création de la base de données
@@ -38,7 +38,7 @@ public class GestionnaireCompte {
     private EntityManager em;
 
     public List<CompteBancaire> getAllComptes() {
-        TypedQuery<CompteBancaire> query = em.createQuery("SELECT c FROM CompteBancaire c", CompteBancaire.class);
+        TypedQuery<CompteBancaire> query = em.createQuery("SELECT c FROM CompteBancaire c join fetch c.operations", CompteBancaire.class);
         return query.getResultList();
     }
 

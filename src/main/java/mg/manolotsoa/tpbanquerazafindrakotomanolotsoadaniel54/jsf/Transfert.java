@@ -78,13 +78,6 @@ public class Transfert implements Serializable {
                 erreur = true;
             }
         }
-        if (compteDestinataire == null) {
-            Util.messageErreur("Compte inexistant: " + idCompteDestinataire, "Compte inexistant: " + idCompteDestinataire, "form:destinataire");
-            // Message d'erreur associé au composant source ; form:source est l'id client
-            // si l'id du formulaire est "form" et l'id du champ de saisie de l'id de la source est "source"
-            // dans la page JSF qui lance le transfert.
-            erreur = true;
-        }
         if (Objects.equals(idCompteSource, idCompteDestinataire)) {
             Util.messageErreur("Les comptes source et destination doivent être différents", "Les comptes source et destination doivent être différents", "form:source");
             Util.messageErreur("Les comptes source et destination doivent être différents", "Les comptes source et destination doivent être différents", "form:destinataire");

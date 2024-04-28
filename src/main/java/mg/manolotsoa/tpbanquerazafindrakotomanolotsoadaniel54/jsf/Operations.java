@@ -21,6 +21,8 @@ import mg.manolotsoa.tpbanquerazafindrakotomanolotsoadaniel54.service.Gestionnai
 @RequestScoped
 public class Operations implements Serializable {
 
+    private List<OperationBancaire> allOperations;
+
     /**
      * Creates a new instance of Operations
      */
@@ -49,8 +51,9 @@ public class Operations implements Serializable {
         return compteBancaire;
     }
 
-    public List<OperationBancaire> listeOperationBancaires() {
-        return compteBancaire.getOperations();
+    public List<OperationBancaire> getAllOperations() {
+        allOperations = compteBancaire.getOperations();
+        return allOperations;
     }
 
 }
