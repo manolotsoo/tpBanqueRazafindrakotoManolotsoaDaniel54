@@ -39,13 +39,13 @@
                 Montant de l'operation :
                 <h:inputText id="montant" value="#{operation.montant}"
                              required="true"
+                             validator="#{operation.soldeValidation}"
                              />
                 <h:message for="montant"/>
             </h:panelGrid>
             <h:commandButton action="#{operation.enregistrer}"
                              value="Enregistrer l'opération"/>
         </h:form>
-        <h:messages />
     </ui:define>
 
 </ui:composition>
